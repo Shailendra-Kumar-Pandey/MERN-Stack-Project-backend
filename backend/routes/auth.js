@@ -31,6 +31,7 @@ router.post(
           .status(400)
           .json({ error: "Sorry a user with the email already exists" });
       }
+      // Create a new user
       user = await User.create({
         name: req.body.name,
         email: req.body.email,
@@ -38,6 +39,7 @@ router.post(
         password: req.body.password,
       });
       res.json(user);
+      // Catch error
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Some Error occured");
