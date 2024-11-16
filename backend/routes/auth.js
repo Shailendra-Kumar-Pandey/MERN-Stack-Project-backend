@@ -5,7 +5,10 @@ const { body, validationResult } = require('express-validator');
 
 
 // Create a User using: POST "/api/auth/". dosen't require Auth
-
+// router.get('/', (req, res)=>{
+//   console.log(req.body);
+//   res.send(req.body);
+// })
 router.post('/',[
     body('name', 'Enter a valid name').isLength({ min: 3 }),
     body('email', 'Enter a valid email').isEmail(),
@@ -21,8 +24,9 @@ router.post('/',[
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
-      }).then(user => res.json(user));
-    res.send(req.body);
+      }).then(user => res.json(user))
+      .catch(err=>console.log(err));
+    // res.send(req.body);
 })
 
 module.exports = router
