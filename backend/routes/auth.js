@@ -9,7 +9,6 @@ const fetchuser = require("../middleware/fetchuser");
 const JWT_SECRET = "kya haa hai";
 
 //ROUTER:01 Create a User using: POST "/api/auth/createuser". No login required
-
 router.post(
   "/createuser",
   [
@@ -50,7 +49,6 @@ router.post(
           id: user.id,
         },
       };
-
       const authtoken = jwt.sign(data, JWT_SECRET);
       res.json({ authtoken });
       // Catch error
@@ -61,7 +59,6 @@ router.post(
   }
 );
 //ROUTER:02 Create a User using: POST "/api/auth/login". No login required
-
 router.post(
   "/login",
   [
@@ -74,7 +71,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.arra0y() });
     }
-
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email });
